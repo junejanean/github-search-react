@@ -1,0 +1,187 @@
+body {
+  background: linear-gradient(to right, #1F1F26, #303E8C);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Titillium Web', sans-serif;
+  margin: 0;
+  min-height: 100vh;
+}
+
+a {
+  color: #4369D9;
+  text-decoration: none;
+}
+
+.wrapper {
+  max-width: 450px;
+  margin: 50px auto;
+  display: flex;
+  
+}
+
+.wrapper .search-input {
+  background-color: #302F40;;
+  width: 100%;
+  border-radius: 5px;
+  position: relative;
+  box-shadow: 0px 1px 5px 3px rgba(0,0,0,0.12);
+}
+
+form {
+  display: flex;
+}
+
+.search-input input {
+  width: 100%;
+  background-color: #302F40;
+  border-radius: 10px;
+  border: none;
+  box-shadow: 0 5px 10px rgba(154, 160, 185, 0.05),
+      0 15px 40px rgba(0, 0, 0, 0.1);
+  color: #F2E8DC;
+  padding: 10px;
+  border: solid 2px #303E8C;
+  height: 55px;
+  border-radius: 5px;
+  padding: 0 60px 0 20px;
+  font-size: 15px;
+}
+
+.icon {
+position: absolute;
+background-color: #302F40;
+right:3px;
+top: 3px;
+height: 52px;
+width: 55px;
+text-align: center;
+line-height: 55px;
+font-size: 20px;
+color: #4369D9;
+cursor: pointer;
+border: none;
+}
+
+button {
+  transition: background 250ms ease-in-out, 
+              transform 150ms ease;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+button:hover {
+  color: #6087fa;
+}
+
+.search-input .autocom-box {
+  background-color: #302F40 ;
+  max-height: 280px;
+  overflow-y: auto;
+  opacity: 0;
+  pointer-events: none;
+  padding: 0px;
+  border-radius: 5px;
+}
+
+.search-input .autocom-box li {
+  list-style: none;
+  background-color: #302F40;
+  padding: 4px 0px;
+  width: 100%;
+  cursor: default;
+  color: #F2E8DC;
+  display: none;
+}
+.search-input .autocom-box li div {
+  padding: 10px 24px;
+}
+.autocom-box li:hover {
+  background-color: #303E8C;
+  transition: background-color .5s;
+  border-radius: none;
+}
+
+.search-input.active .autocom-box {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.search-input.active .autocom-box li {
+  display: block;
+}
+
+:focus-visible {
+  outline: solid 2px #4369D9;
+}
+
+#main {
+  margin: 0.8rem;
+}
+
+.card {
+  background-color: #303E8C;
+  background: linear-gradient(to right, #303E8C, #1F1F26 );
+  border-radius: 20px;
+  box-shadow:  0 5px 10px rgba(154, 160, 185, 0.05),
+      0 15px 40px rgba(0, 0, 0, 0.1);
+  display: flex;
+  padding: 3em;
+  max-width: 800px;
+}
+
+.avatar {
+  border: 10px solid #4369D9;
+  border-radius: 50%;
+  height: 150px;
+  width: 150px;
+}
+
+.user-info {
+  color: #F2E8DC;
+  margin-left: 2em;
+}
+
+.user-info h2 {
+  margin: 0;
+}
+h5 {
+  font-weight: 200;
+  margin: 0;
+}
+p {
+  font-weight: 300;
+  font-style: italic;
+}
+
+#main .user-info ul {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  list-style-type: none;
+  padding: 0;
+  max-width: 400px;
+}
+
+#main .user-info ul li {
+  font-size: 0.9rem;
+  margin: 0.5rem 0.5rem 0 0;
+}
+
+.repo {
+  background-color: #4369D9;
+  color: #F2E8DC;
+  border-radius: 5px;
+  display: inline-block;
+  font-size: 0.7rem;
+  padding: 0.25rem 0.5rem;
+  margin: 0 0.5rem 0.5rem 0;
+  text-decoration: none;
+}
+
+@media (max-width: 600px) {
+  .card {
+      display: grid;
+      justify-items: center;
+  }
+}
