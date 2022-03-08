@@ -6,22 +6,12 @@ import suggestions from './suggestions';
 
 const API_BASE = 'https://api.github.com/';
 
-// const main = document.getElementById("main");
-// const form = document.getElementById("form");
-// const search = document.getElementById("search");
-
-// // autopopulate variables
-// const searchWrapper = document.querySelector(".search-input");
-// const inputBox = searchWrapper.querySelector("input");
-// const suggBox = searchWrapper.querySelector(".autocom-box");
-
 function App() {
 	const [userData, setUserData] = useState({});
 	const [userRepos, setUserRepos] = useState([]);
 	const [username, setUsername] = useState('');
 	const [isVisible, setIsVisible] = useState(false);
 	const [suggestedUsers, setSuggestedUsers] = useState([]);
-	// const [selectUser, setSelectUser] = useState({});
 
 	useEffect(() => {
 		getGitHubUser();
