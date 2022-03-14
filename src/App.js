@@ -4,64 +4,74 @@ import './App.css';
 import ListRepos from './components/ListRepos';
 import suggestions from './suggestions';
 
-const API_BASE = 'https://api.github.com/';
-
 function App() {
+	const API_BASE = 'https://api.github.com/';
+	const accessToken = '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';
+
 	const [userData, setUserData] = useState({});
 	const [userRepos, setUserRepos] = useState([]);
-	const [username, setUsername] = useState('');
+	const [username, setUsername] = useState('junejanean');
 	const [isVisible, setIsVisible] = useState(false);
 	const [suggestedUsers, setSuggestedUsers] = useState([]);
 
 	useEffect(() => {
 		getGitHubUser();
-		getRepos();
+		getGitHubUserRepos();
+		setUsername('');
 	}, []);
 
+	//API GET function using Axios accesssing github usernames
 	const getGitHubUser = async () => {
-		const response = await axios.get(`${API_BASE}users/${username}`);
+		const response = await axios.get(`${API_BASE}users/${username}`, {
+			headers: {
+				Authorization: `token ${accessToken}`,
+			},
+		});
 		setUserData(response.data);
 	};
 
-	const getRepos = async () => {
-		const response = await axios.get(`${API_BASE}users/${username}/repos`);
+	//API GET function using Axios accesssing github usernames' repos
+	const getGitHubUserRepos = async () => {
+		const response = await axios.get(`${API_BASE}users/${username}/repos`, {
+			headers: {
+				Authorization: `token ${accessToken}`,
+			},
+		});
 		setUserRepos([...response.data]);
 	};
 
 	const handleChange = (e) => {
-		setUsername(e.target.value);
-
 		let userData = e.target.value; //user entered data
 		let emptyArray = [];
-		// if (userData) {
 		emptyArray = suggestions.filter((data) => {
 			// filtering array value and user char to lowercase and return only the value
 			//which starts with user entered word.
 			return data.toLocaleLowerCase().startsWith(userData.toLocaleLowerCase());
 		});
-		setSuggestedUsers(emptyArray);
-		console.log(suggestedUsers);
+
+		setUsername(e.target.value); //grab user from search field
+		setSuggestedUsers(emptyArray); // empty array after
 	};
 
+	// submit event to grab username and repo, show user info div and hide suggestedUsers array
 	const handleSubmit = (e) => {
 		e.preventDefault();
-
 		getGitHubUser();
-		getRepos();
-		setIsVisible(!isVisible);
+		getGitHubUserRepos();
+		setIsVisible(true);
+		setSuggestedUsers([]);
+		setUsername('');
 	};
 
+	// using 'Enter' key as submit, pass handleSubmit()
 	const handleEnter = (e) => {
 		if (e.key === 'Enter') {
-			getGitHubUser();
-			getRepos();
-			setIsVisible(!isVisible);
+			handleSubmit(e);
 		}
 	};
 
 	// select suggestion in autocomplete box
 	const handleSelect = (e) => {
-		let selectUserData = e.currentTarget.dataset.id;
 		setUsername(e.currentTarget.dataset.id);
 		setSuggestedUsers([]);
 	};
@@ -87,7 +97,6 @@ function App() {
 						</button>
 					</form>
 					<div className='autocom-box'>
-						{/* <!-- auto suggestions inserted from javascript --> */}
 						{suggestedUsers.length > 0 &&
 							suggestedUsers.map((data, index) => {
 								return (

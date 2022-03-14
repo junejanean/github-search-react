@@ -102,14 +102,14 @@ button:hover {
   border-radius: none;
 }
 
-.search-input.active .autocom-box {
-  opacity: 1;
-  /* pointer-events: auto; */
-}
-
-.search-input.active .autocom-box li {
+/* .search-input .autocom-box.active  {
   display: block;
-}
+  /* pointer-events: auto; */
+ */
+
+/* .search-input .autocom-box.active li {
+  display: block;
+} */
 
 :focus-visible {
   outline: solid 2px #4369D9;
