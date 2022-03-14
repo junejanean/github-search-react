@@ -6,7 +6,7 @@ import suggestions from './suggestions';
 
 function App() {
 	const API_BASE = 'https://api.github.com/';
-	const accessToken = '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';
+	//const accessToken = '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';
 
 	const [userData, setUserData] = useState({});
 	const [userRepos, setUserRepos] = useState([]);
@@ -22,21 +22,13 @@ function App() {
 
 	//API GET function using Axios accesssing github usernames
 	const getGitHubUser = async () => {
-		const response = await axios.get(`${API_BASE}users/${username}`, {
-			headers: {
-				Authorization: `token ${accessToken}`,
-			},
-		});
+		const response = await axios.get(`${API_BASE}users/${username}`);
 		setUserData(response.data);
 	};
 
 	//API GET function using Axios accesssing github usernames' repos
 	const getGitHubUserRepos = async () => {
-		const response = await axios.get(`${API_BASE}users/${username}/repos`, {
-			headers: {
-				Authorization: `token ${accessToken}`,
-			},
-		});
+		const response = await axios.get(`${API_BASE}users/${username}/repos`);
 		setUserRepos([...response.data]);
 	};
 
@@ -81,7 +73,7 @@ function App() {
 			<div className='wrapper'>
 				<div className='search-input'>
 					<form onSubmit={handleSubmit} action='submit' id='form'>
-						<a href='' target='_blank' hidden></a>
+						<a href='#' target='_blank' hidden></a>
 						<input
 							onChange={handleChange}
 							type='text'
